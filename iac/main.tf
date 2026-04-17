@@ -8,5 +8,10 @@ terraform {
 }
 
 provider "docker" {
-  # Configuration options
+  host = "unix:///var/run/docker.sock"
+}
+
+# Creamos una red para que los contenedores se hablen por nombre
+resource "docker_network" "app_network" {
+  name = "network-${terraform.workspace}"
 }
