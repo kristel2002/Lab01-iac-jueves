@@ -1,3 +1,2 @@
-variable "region" {
-  default = "us-central1"
-}
+variable "web_port" {}
+variable "api_port" {}
