@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  app1:
+   image: nginx trixie—perl
+   container_name: app1
+   ports:
+    — 8081:80
+   networks:
+      - web_net #es la red nativa
+      - api_net #la red que otorga visibildad entre las APIs
+  app2:
+   image: app1iac
+   container_name: app1
+   ports:
+    — 8082:80
+   networks:
+      - web_net 
+      - api_net 
+  api1:
+   image: jkaninda/simple-api
+   container_name: api1
+   ports:
+    — 8083:8080
+   networks:
+      - api_net #para que el front pueda conectar al back
+      - bd_net #para que el back se conecte a la bd
+  api2:
+   image: jkaninda/simple-api
+   container_name: api2
+   ports:
+    — 8084:8080
+   networks:
+      - api_net #para que el front pueda conectar al back
+      - bd_net #para que el back se conecte a la bd
+  BD: 
+    image: mysql:oraclelinux9
+    container_name: DB
+    environment:
+      - mysql_root_password=
+    ports:
+    - 3307:3306
+    networks:
+      - bd_net #red en la que existe 
+  #redes definidas
+networks: 
+  web_net:
+    driver: bridge #para permitir la conexión entre los contenedores al estar en el mismo host
+  api_net:
+    driver: bridge
+  bd_net:
+    driver: bridge
+
+    
