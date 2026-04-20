@@ -15,3 +15,15 @@ provider "docker" {
 resource "docker_network" "app_network" {
   name = "network-${terraform.workspace}"
 }
+
+provider "aws" {
+  # Configuration options
+    profile = "Seabook"
+
+    default_tags {
+        tags = {
+    Environment = terraform.workspace
+    Application = "seabook"
+     }
+    }
+}

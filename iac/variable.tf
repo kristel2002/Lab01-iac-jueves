@@ -15,3 +15,6 @@ variable "api_port" {
     "prod"    = 3000
   }
 }
+variable "DATABASE_ENDPOINT" {
+  type = string
+}
