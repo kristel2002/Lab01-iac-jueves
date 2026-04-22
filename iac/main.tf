@@ -19,11 +19,13 @@ resource "docker_network" "app_network" {
 provider "aws" {
   # Configuration options
     profile = "Seabook"
+    region  = "us-east-1"
 
     default_tags {
         tags = {
-    Environment = terraform.workspace
-    Application = "seabook"
+          Environment = terraform.workspace
+          Application = "seabook"
+          ManagedBy   = "Terraform" 
      }
     }
 }
